@@ -816,15 +816,15 @@
                             <div class="stat-label">⚡ Energy</div>
                         </div>
                         <div class="stat-box">
-                            <div class="stat-value">${data.averages.health}</div>
+                            <div class="stat-value">${data.averages.health || '0.00'}</div>
                             <div class="stat-label">❤️ Health</div>
                         </div>
                         <div class="stat-box">
-                            <div class="stat-value">${data.averages.sleep}</div>
+                            <div class="stat-value">${data.averages.sleep || '0.00'}</div>
                             <div class="stat-label">😴 Sleep</div>
                         </div>
                         <div class="stat-box">
-                            <div class="stat-value">${data.averages.stress}</div>
+                            <div class="stat-value">${data.averages.stress || '0.00'}</div>
                             <div class="stat-label">😰 Stress</div>
                         </div>
                     </div>
@@ -855,13 +855,13 @@
                     datasets: [{
                         label: 'Average Score',
                         data: [
-                            parseFloat(data.averages.mood),
-                            parseFloat(data.averages.social),
-                            parseFloat(data.averages.work),
-                            parseFloat(data.averages.energy),
-                            parseFloat(data.averages.health),
-                            parseFloat(data.averages.sleep),
-                            parseFloat(data.averages.stress)
+                            parseFloat(data.averages.mood) || 0,
+                            parseFloat(data.averages.social) || 0,
+                            parseFloat(data.averages.work) || 0,
+                            parseFloat(data.averages.energy) || 0,
+                            parseFloat(data.averages.health) || 0,
+                            parseFloat(data.averages.sleep) || 0,
+                            parseFloat(data.averages.stress) || 0
                         ],
                         backgroundColor: [
                             '#ff6b6b',
