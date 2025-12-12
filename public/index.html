@@ -22,6 +22,7 @@
             overflow-x: hidden;
         }
 
+        /* Animated floating bubbles background */
         .bubble {
             position: absolute;
             bottom: -100px;
@@ -48,12 +49,13 @@
         .bubble:nth-child(7) { left: 90%; width: 50px; height: 50px; animation-delay: 5s; }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
         }
 
+        /* Fun bouncing title */
         .main-title {
             text-align: center;
             margin-bottom: 20px;
@@ -103,7 +105,7 @@
             left: 0;
             right: 0;
             height: 10px;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #a29bfe, #fd79a8, #fdcb6e);
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
         }
 
         h2 {
@@ -185,9 +187,31 @@
             overflow: hidden;
         }
 
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         button:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0) scale(0.98);
         }
 
         button:disabled {
@@ -257,17 +281,17 @@
             color: white;
         }
 
-        /* 7 Categories score display */
+        /* Fun animated score display */
         .scores-display {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
             margin: 30px 0;
         }
 
         .score-item {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 20px;
+            padding: 25px;
             border-radius: 25px;
             text-align: center;
             color: white;
@@ -277,12 +301,9 @@
         }
 
         .score-item:nth-child(1) { animation-delay: 0.1s; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-        .score-item:nth-child(2) { animation-delay: 0.15s; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
-        .score-item:nth-child(3) { animation-delay: 0.2s; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
-        .score-item:nth-child(4) { animation-delay: 0.25s; background: linear-gradient(135deg, #ff9a56 0%, #ff6a00 100%); }
-        .score-item:nth-child(5) { animation-delay: 0.3s; background: linear-gradient(135deg, #f83600 0%, #f9d423 100%); }
-        .score-item:nth-child(6) { animation-delay: 0.35s; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-        .score-item:nth-child(7) { animation-delay: 0.4s; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .score-item:nth-child(2) { animation-delay: 0.2s; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .score-item:nth-child(3) { animation-delay: 0.3s; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .score-item:nth-child(4) { animation-delay: 0.4s; background: linear-gradient(135deg, #ff9a56 0%, #ff6a00 100%); }
 
         @keyframes popIn {
             0% { transform: scale(0) rotate(-180deg); }
@@ -291,8 +312,8 @@
         }
 
         .score-emoji {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 64px;
+            margin-bottom: 15px;
             animation: spin 1s ease-in-out;
         }
 
@@ -303,15 +324,16 @@
 
         .score-label {
             font-weight: 700;
-            font-size: 1.1em;
+            font-size: 1.3em;
             margin-bottom: 5px;
         }
 
         .score-value {
-            font-size: 0.95em;
+            font-size: 1.1em;
             opacity: 0.9;
         }
 
+        /* NEW: Time context display */
         .time-context {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
@@ -350,6 +372,7 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Stats page enhancements */
         .stats-controls {
             display: flex;
             gap: 20px;
@@ -364,14 +387,14 @@
 
         .stats-summary {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .stat-box {
             background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            padding: 18px;
+            padding: 20px;
             border-radius: 20px;
             text-align: center;
             border: 3px solid rgba(102, 126, 234, 0.2);
@@ -384,7 +407,7 @@
         }
 
         .stat-value {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: 700;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -393,7 +416,7 @@
         }
 
         .stat-label {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: #666;
             font-weight: 600;
             text-transform: uppercase;
@@ -401,22 +424,24 @@
         }
 
         #chartContainer {
-            height: 500px;
+            height: 450px;
             margin-top: 30px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 20px;
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
+        /* Pulsing effect for interactive elements */
         @keyframes pulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
             50% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
         }
 
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Cute loading spinner */
         .spinner {
             border: 5px solid #f3f3f3;
             border-top: 5px solid #667eea;
@@ -432,6 +457,7 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Mobile responsive */
         @media (max-width: 768px) {
             .main-title h1 { font-size: 2em; }
             .card { padding: 25px; }
@@ -441,6 +467,7 @@
     </style>
 </head>
 <body>
+    <!-- Floating bubbles -->
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
@@ -450,6 +477,7 @@
     <div class="bubble"></div>
 
     <div class="container">
+        <!-- Login Screen -->
         <div id="loginScreen">
             <div class="main-title">
                 <h1>🌍 Global Mood Tracker</h1>
@@ -489,6 +517,7 @@
             </div>
         </div>
 
+        <!-- Main App -->
         <div id="mainApp" class="hidden">
             <div class="main-title">
                 <h1>🌍 Global Mood Tracker</h1>
@@ -497,10 +526,11 @@
 
             <div class="nav-buttons">
                 <button class="nav-button active" onclick="showView('entry')">📝 My Daily Vibe</button>
-                <button class="nav-button" onclick="showView('stats')">📊 World Stats</button>
+                <button class="nav-button" onclick="showView('stats')">📊 World Mood Stats</button>
                 <button class="nav-button" onclick="logout()">👋 Logout</button>
             </div>
 
+            <!-- Entry View -->
             <div id="entryView" class="card">
                 <h2><span class="emoji-big">📝</span> Share Your Daily Vibe!</h2>
                 <p class="subtitle" id="userInfo"></p>
@@ -510,18 +540,19 @@
                 <div id="entryForm">
                     <div class="form-group">
                         <label>💭 How was your day?</label>
-                        <textarea id="entryText" placeholder="Tell us everything! Like... 'Slept amazingly well! Had a great workout and crushed my presentation at work! Feeling super energized and stress-free! 🎉'"></textarea>
+                        <textarea id="entryText" placeholder="Tell us everything! Like... 'Had an AMAZING day! Met friends for coffee and crushed my work presentation! Feeling super energized! 🎉'"></textarea>
                         <div style="text-align: right; color: #999; font-size: 0.9em; margin-top: 5px;">
                             <span id="charCount">0</span> characters (min 10)
                         </div>
                     </div>
 
-                    <button onclick="submitEntry()">✨ Analyze My Vibe!</button>
+                    <button onclick="submitEntry()">✨ Analyze My Mood!</button>
                 </div>
 
                 <div id="entrySuccess" class="hidden"></div>
             </div>
 
+            <!-- Statistics View -->
             <div id="statsView" class="card hidden">
                 <h2><span class="emoji-big">📊</span> Global Mood Statistics</h2>
 
@@ -566,6 +597,7 @@
         let currentUser = null;
         let statsChart = null;
 
+        // Character counter
         document.addEventListener('DOMContentLoaded', () => {
             const textarea = document.getElementById('entryText');
             if (textarea) {
@@ -575,6 +607,7 @@
             }
         });
 
+        // Load saved user
         window.onload = () => {
             const saved = localStorage.getItem('moodUser');
             if (saved) {
@@ -633,13 +666,31 @@
         }
 
         function formatTimeContext(time) {
-            if (!time || (!time.timeOfDay && !time.day && !time.duration)) return null;
+            if (!time || (!time.timeOfDay && !time.day && !time.duration)) {
+                return null;
+            }
 
             const badges = [];
             
-            const timeEmojis = { morning: '🌅', afternoon: '☀️', evening: '🌆', night: '🌙' };
-            const dayEmojis = { today: '📅', yesterday: '⏮️', tomorrow: '⏭️', weekend: '🎉' };
-            const durationEmojis = { brief: '⚡', all_day: '📆', extended: '⏳' };
+            const timeEmojis = {
+                morning: '🌅',
+                afternoon: '☀️',
+                evening: '🌆',
+                night: '🌙'
+            };
+
+            const dayEmojis = {
+                today: '📅',
+                yesterday: '⏮️',
+                tomorrow: '⏭️',
+                weekend: '🎉'
+            };
+
+            const durationEmojis = {
+                brief: '⚡',
+                all_day: '📆',
+                extended: '⏳'
+            };
 
             if (time.timeOfDay) {
                 badges.push(`${timeEmojis[time.timeOfDay] || '⏰'} ${time.timeOfDay.charAt(0).toUpperCase() + time.timeOfDay.slice(1)}`);
@@ -650,7 +701,11 @@
             }
 
             if (time.duration) {
-                const durationLabels = { brief: 'Quick', all_day: 'All day', extended: 'Long time' };
+                const durationLabels = {
+                    brief: 'Quick moment',
+                    all_day: 'All day',
+                    extended: 'Long time'
+                };
                 badges.push(`${durationEmojis[time.duration] || '⏱️'} ${durationLabels[time.duration]}`);
             }
 
@@ -662,11 +717,11 @@
             const messageDiv = document.getElementById('entryMessage');
 
             if (text.length < 10) {
-                messageDiv.innerHTML = '<div class="message error">📝 Please write at least 10 characters!</div>';
+                messageDiv.innerHTML = '<div class="message error">📝 Please write at least 10 characters! We want to know more!</div>';
                 return;
             }
 
-            messageDiv.innerHTML = '<div class="message loading">🤖 Analyzing with AI...<div class="spinner"></div></div>';
+            messageDiv.innerHTML = '<div class="message loading">🤖 Analyzing your vibe with AI magic...<div class="spinner"></div></div>';
 
             try {
                 const response = await fetch('/api/submit', {
@@ -686,6 +741,7 @@
                     throw new Error(data.error);
                 }
 
+                // Show success with animated scores
                 const getEmoji = (score) => {
                     if (score >= 1.5) return '😄';
                     if (score >= 0.5) return '🙂';
@@ -707,7 +763,7 @@
                 if (timeBadges && timeBadges.length > 0) {
                     timeContextHTML = `
                         <div class="time-context">
-                            <h3>⏰ Time Context</h3>
+                            <h3>⏰ Time Context Detected</h3>
                             <div class="time-badges">
                                 ${timeBadges.map(badge => `<span class="time-badge">${badge}</span>`).join('')}
                             </div>
@@ -718,49 +774,34 @@
                 document.getElementById('entryForm').classList.add('hidden');
                 document.getElementById('entrySuccess').innerHTML = `
                     <div class="message success">
-                        <h3>🎉 Entry Submitted Successfully!</h3>
-                        <p>Here's your AI analysis across 7 dimensions:</p>
+                        <h3>🎉 Awesome! Entry Submitted!</h3>
+                        <p>Here's what our AI found in your vibe:</p>
                     </div>
                     ${timeContextHTML}
                     <div class="scores-display">
                         <div class="score-item">
                             <div class="score-emoji">${getEmoji(data.scores.mood)}</div>
-                            <div class="score-label">😊 Mood</div>
+                            <div class="score-label">Mood</div>
                             <div class="score-value">${getLabel(data.scores.mood)}</div>
                         </div>
                         <div class="score-item">
                             <div class="score-emoji">${getEmoji(data.scores.social)}</div>
-                            <div class="score-label">🤝 Social</div>
+                            <div class="score-label">Social</div>
                             <div class="score-value">${getLabel(data.scores.social)}</div>
                         </div>
                         <div class="score-item">
                             <div class="score-emoji">${getEmoji(data.scores.work)}</div>
-                            <div class="score-label">💼 Work</div>
+                            <div class="score-label">Work</div>
                             <div class="score-value">${getLabel(data.scores.work)}</div>
                         </div>
                         <div class="score-item">
                             <div class="score-emoji">${getEmoji(data.scores.energy)}</div>
-                            <div class="score-label">⚡ Energy</div>
+                            <div class="score-label">Energy</div>
                             <div class="score-value">${getLabel(data.scores.energy)}</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-emoji">${getEmoji(data.scores.health)}</div>
-                            <div class="score-label">❤️ Health</div>
-                            <div class="score-value">${getLabel(data.scores.health)}</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-emoji">${getEmoji(data.scores.sleep)}</div>
-                            <div class="score-label">😴 Sleep</div>
-                            <div class="score-value">${getLabel(data.scores.sleep)}</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-emoji">${getEmoji(data.scores.stress)}</div>
-                            <div class="score-label">😰 Stress</div>
-                            <div class="score-value">${getLabel(data.scores.stress)}</div>
                         </div>
                     </div>
                     <div class="message" style="background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%); color: white;">
-                        ✨ See you tomorrow! Come back in 24 hours! 🌅
+                        ✨ See you tomorrow! Come back in 24 hours to share again! 🌅
                     </div>
                 `;
                 document.getElementById('entrySuccess').classList.remove('hidden');
@@ -776,7 +817,7 @@
             const viewType = document.getElementById('statsView').value;
             const messageDiv = document.getElementById('statsMessage');
 
-            messageDiv.innerHTML = '<div class="message loading">📊 Loading stats...<div class="spinner"></div></div>';
+            messageDiv.innerHTML = '<div class="message loading">📊 Loading the vibes...<div class="spinner"></div></div>';
 
             try {
                 let url;
@@ -793,11 +834,12 @@
 
                 messageDiv.innerHTML = '';
 
+                // Show summary with fun animations
                 document.getElementById('statsSummary').innerHTML = `
                     <div class="stats-summary">
                         <div class="stat-box">
                             <div class="stat-value">${data.totalEntries}</div>
-                            <div class="stat-label">👥 Entries</div>
+                            <div class="stat-label">👥 Total Vibes</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-value">${data.averages.mood}</div>
@@ -815,25 +857,14 @@
                             <div class="stat-value">${data.averages.energy}</div>
                             <div class="stat-label">⚡ Energy</div>
                         </div>
-                        <div class="stat-box">
-                            <div class="stat-value">${data.averages.health}</div>
-                            <div class="stat-label">❤️ Health</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value">${data.averages.sleep}</div>
-                            <div class="stat-label">😴 Sleep</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-value">${data.averages.stress}</div>
-                            <div class="stat-label">😰 Stress</div>
-                        </div>
                     </div>
                 `;
 
+                // Draw enhanced chart
                 drawChart(data, viewType);
 
                 if (data.totalEntries === 0) {
-                    messageDiv.innerHTML = '<div class="message">🌟 No data yet! Be the first!</div>';
+                    messageDiv.innerHTML = '<div class="message">🌟 No vibes yet! Be the first to share!</div>';
                 }
 
             } catch (error) {
@@ -848,67 +879,121 @@
                 statsChart.destroy();
             }
 
-            statsChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['😊 Mood', '🤝 Social', '💼 Work', '⚡ Energy', '❤️ Health', '😴 Sleep', '😰 Stress'],
-                    datasets: [{
-                        label: 'Average Score',
-                        data: [
-                            parseFloat(data.averages.mood),
-                            parseFloat(data.averages.social),
-                            parseFloat(data.averages.work),
-                            parseFloat(data.averages.energy),
-                            parseFloat(data.averages.health),
-                            parseFloat(data.averages.sleep),
-                            parseFloat(data.averages.stress)
-                        ],
-                        backgroundColor: [
-                            '#ff6b6b',
-                            '#4ecdc4',
-                            '#45b7d1',
-                            '#ffa07a',
-                            '#ff6348',
-                            '#5f27cd',
-                            '#48dbfb'
-                        ],
-                        borderRadius: 15,
-                        borderWidth: 3,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { 
-                            grid: { display: false },
-                            ticks: { font: { family: 'Fredoka', size: 13 } }
-                        },
-                        y: { 
-                            beginAtZero: true,
-                            min: -2,
-                            max: 2,
-                            title: {
-                                display: true,
-                                text: 'Score (-2 to +2)',
-                                font: { family: 'Fredoka', size: 14 }
+            if (viewType === 'today' && data.distribution) {
+                const dist = data.distribution;
+                statsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['😊 Mood', '🤝 Social', '💼 Work', '⚡ Energy'],
+                        datasets: [
+                            {
+                                label: '😢 Very Negative',
+                                data: [dist.mood.veryNegative, dist.social.veryNegative, dist.work.veryNegative, dist.energy.veryNegative],
+                                backgroundColor: '#e74c3c',
+                                borderRadius: 10
                             },
-                            grid: { color: 'rgba(0,0,0,0.05)' }
-                        }
+                            {
+                                label: '😕 Negative',
+                                data: [dist.mood.negative, dist.social.negative, dist.work.negative, dist.energy.negative],
+                                backgroundColor: '#f39c12',
+                                borderRadius: 10
+                            },
+                            {
+                                label: '😐 Neutral',
+                                data: [dist.mood.neutral, dist.social.neutral, dist.work.neutral, dist.energy.neutral],
+                                backgroundColor: '#95a5a6',
+                                borderRadius: 10
+                            },
+                            {
+                                label: '🙂 Positive',
+                                data: [dist.mood.positive, dist.social.positive, dist.work.positive, dist.energy.positive],
+                                backgroundColor: '#2ecc71',
+                                borderRadius: 10
+                            },
+                            {
+                                label: '😄 Very Positive',
+                                data: [dist.mood.veryPositive, dist.social.veryPositive, dist.work.veryPositive, dist.energy.veryPositive],
+                                backgroundColor: '#27ae60',
+                                borderRadius: 10
+                            }
+                        ]
                     },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: 'rgba(0,0,0,0.8)',
-                            titleFont: { family: 'Fredoka', size: 14 },
-                            bodyFont: { family: 'Fredoka', size: 13 },
-                            padding: 12,
-                            cornerRadius: 10
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { 
+                                stacked: true,
+                                grid: { display: false }
+                            },
+                            y: { 
+                                stacked: true, 
+                                beginAtZero: true,
+                                grid: { color: 'rgba(0,0,0,0.05)' }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Fredoka', size: 13 },
+                                    padding: 15,
+                                    usePointStyle: true
+                                }
+                            }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                statsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['😊 Mood', '🤝 Social', '💼 Work', '⚡ Energy'],
+                        datasets: [{
+                            label: 'Average Score',
+                            data: [
+                                parseFloat(data.averages.mood),
+                                parseFloat(data.averages.social),
+                                parseFloat(data.averages.work),
+                                parseFloat(data.averages.energy)
+                            ],
+                            backgroundColor: [
+                                '#ff6b6b',
+                                '#4ecdc4',
+                                '#45b7d1',
+                                '#ffa07a'
+                            ],
+                            borderRadius: 15,
+                            borderWidth: 3,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { grid: { display: false } },
+                            y: { 
+                                beginAtZero: true,
+                                min: -2,
+                                max: 2,
+                                title: {
+                                    display: true,
+                                    text: 'Score (-2 to +2)',
+                                    font: { family: 'Fredoka', size: 14 }
+                                },
+                                grid: { color: 'rgba(0,0,0,0.05)' }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
         }
     </script>
 </body>

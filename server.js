@@ -102,12 +102,12 @@ app.post('/api/submit', async (req, res) => {
       return res.status(429).json({ error: 'You already posted today! Come back tomorrow.' });
     }
 
-    // Analyze with built-in AI (now returns 7 dimensions)
+    // Analyze with built-in AI
     console.log(`✨ Analyzing entry from ${userName} (${country})...`);
     const scores = analyzeText(text);
     console.log(`📊 AI Scores:`, scores);
 
-    // Save entry with all 7 dimensions
+    // Save entry
     const entry = {
       userId,
       userName,
@@ -140,64 +140,35 @@ app.get('/api/stats/:country/:date', async (req, res) => {
         country,
         date,
         totalEntries: 0,
-        averages: { 
-          mood: 0, 
-          social: 0, 
-          work: 0, 
-          energy: 0,
-          health: 0,
-          sleep: 0,
-          stress: 0
-        },
+        averages: { mood: 0, social: 0, work: 0, energy: 0 },
         distribution: {
           mood: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
           social: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
           work: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-          energy: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-          health: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-          sleep: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-          stress: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 }
+          energy: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 }
         }
       });
     }
 
-    // Calculate statistics for all 7 dimensions
-    const sums = { 
-      mood: 0, 
-      social: 0, 
-      work: 0, 
-      energy: 0,
-      health: 0,
-      sleep: 0,
-      stress: 0
-    };
-    
+    // Calculate statistics
+    const sums = { mood: 0, social: 0, work: 0, energy: 0 };
     const distribution = {
       mood: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
       social: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
       work: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-      energy: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-      health: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-      sleep: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 },
-      stress: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 }
+      energy: { veryNegative: 0, negative: 0, neutral: 0, positive: 0, veryPositive: 0 }
     };
 
     entries.forEach(entry => {
       const scores = entry.scores;
       
-      // Sum for averages (all 7 dimensions)
-      sums.mood += scores.mood || 0;
-      sums.social += scores.social || 0;
-      sums.work += scores.work || 0;
-      sums.energy += scores.energy || 0;
-      sums.health += scores.health || 0;
-      sums.sleep += scores.sleep || 0;
-      sums.stress += scores.stress || 0;
+      sums.mood += scores.mood;
+      sums.social += scores.social;
+      sums.work += scores.work;
+      sums.energy += scores.energy;
 
-      // Distribution counts for all 7 dimensions
-      const dimensions = ['mood', 'social', 'work', 'energy', 'health', 'sleep', 'stress'];
-      for (const dimension of dimensions) {
-        const score = scores[dimension] || 0;
+      for (const dimension of ['mood', 'social', 'work', 'energy']) {
+        const score = scores[dimension];
         if (score === -2) distribution[dimension].veryNegative++;
         else if (score === -1) distribution[dimension].negative++;
         else if (score === 0) distribution[dimension].neutral++;
@@ -206,21 +177,17 @@ app.get('/api/stats/:country/:date', async (req, res) => {
       }
     });
 
-    const totalEntries = entries.length;
     const averages = {
-      mood: (sums.mood / totalEntries).toFixed(2),
-      social: (sums.social / totalEntries).toFixed(2),
-      work: (sums.work / totalEntries).toFixed(2),
-      energy: (sums.energy / totalEntries).toFixed(2),
-      health: (sums.health / totalEntries).toFixed(2),
-      sleep: (sums.sleep / totalEntries).toFixed(2),
-      stress: (sums.stress / totalEntries).toFixed(2)
+      mood: (sums.mood / entries.length).toFixed(2),
+      social: (sums.social / entries.length).toFixed(2),
+      work: (sums.work / entries.length).toFixed(2),
+      energy: (sums.energy / entries.length).toFixed(2)
     };
 
     res.json({
       country,
       date,
-      totalEntries,
+      totalEntries: entries.length,
       averages,
       distribution
     });
@@ -246,55 +213,31 @@ app.get('/api/stats/:country/month/:yearMonth', async (req, res) => {
         country,
         month: yearMonth,
         totalEntries: 0,
-        averages: { 
-          mood: 0, 
-          social: 0, 
-          work: 0, 
-          energy: 0,
-          health: 0,
-          sleep: 0,
-          stress: 0
-        }
+        averages: { mood: 0, social: 0, work: 0, energy: 0 }
       });
     }
 
-    // Calculate sums for all 7 dimensions
-    const sums = { 
-      mood: 0, 
-      social: 0, 
-      work: 0, 
-      energy: 0,
-      health: 0,
-      sleep: 0,
-      stress: 0
-    };
+    const sums = { mood: 0, social: 0, work: 0, energy: 0 };
 
     entries.forEach(entry => {
       const scores = entry.scores;
-      sums.mood += scores.mood || 0;
-      sums.social += scores.social || 0;
-      sums.work += scores.work || 0;
-      sums.energy += scores.energy || 0;
-      sums.health += scores.health || 0;
-      sums.sleep += scores.sleep || 0;
-      sums.stress += scores.stress || 0;
+      sums.mood += scores.mood;
+      sums.social += scores.social;
+      sums.work += scores.work;
+      sums.energy += scores.energy;
     });
 
-    const totalEntries = entries.length;
     const averages = {
-      mood: (sums.mood / totalEntries).toFixed(2),
-      social: (sums.social / totalEntries).toFixed(2),
-      work: (sums.work / totalEntries).toFixed(2),
-      energy: (sums.energy / totalEntries).toFixed(2),
-      health: (sums.health / totalEntries).toFixed(2),
-      sleep: (sums.sleep / totalEntries).toFixed(2),
-      stress: (sums.stress / totalEntries).toFixed(2)
+      mood: (sums.mood / entries.length).toFixed(2),
+      social: (sums.social / entries.length).toFixed(2),
+      work: (sums.work / entries.length).toFixed(2),
+      energy: (sums.energy / entries.length).toFixed(2)
     };
 
     res.json({
       country,
       month: yearMonth,
-      totalEntries,
+      totalEntries: entries.length,
       averages
     });
 
@@ -335,15 +278,6 @@ async function startServer() {
 
 🚀 Server: http://localhost:${PORT}
 💾 Database: ${getDB() ? 'MongoDB ✅' : 'In-Memory ⚠️'}
-
-✨ Tracking 7 Dimensions:
-   😊 Mood
-   🤝 Social
-   💼 Work
-   ⚡ Energy
-   ❤️ Health
-   😴 Sleep
-   😰 Stress
 
 Press Ctrl+C to stop
 `);
