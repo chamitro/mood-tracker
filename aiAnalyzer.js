@@ -1,59 +1,61 @@
 /**
- * ADVANCED COMPREHENSIVE NLP TEXT ANALYZER
+ * COMPREHENSIVE NLP TEXT ANALYZER
  * 
- * Features:
- * - Extensive vocabulary coverage (1000+ words)
- * - Deep contextual understanding
- * - Time extraction and analysis
- * - Relationship pattern detection
- * - Emotional intensity calculation
- * - Multi-dimensional inference engine
- * - Syntactic dependency parsing
+ * Analyzes 7 dimensions:
+ * 1. Mood - Overall emotional state
+ * 2. Social - Relationships and interactions
+ * 3. Work - Career and productivity
+ * 4. Energy - Physical and mental vitality
+ * 5. Health - Physical and mental health status
+ * 6. Sleep - Sleep quality and patterns
+ * 7. Stress - Anxiety and pressure levels
  */
 
 // ============================================
-// COMPREHENSIVE LEXICON - Expanded Vocabulary
+// COMPREHENSIVE LEXICON - All English Words
 // ============================================
 
-const comprehensiveLexicon = {
+const lexicon = {
   mood: {
-    // Very Positive (2)
     veryPositive: {
+      // Joy & Happiness
       'amazing': 2, 'excellent': 2, 'fantastic': 2, 'wonderful': 2, 'incredible': 2,
       'ecstatic': 2, 'thrilled': 2, 'overjoyed': 2, 'delighted': 2, 'euphoric': 2,
       'blessed': 2, 'grateful': 2, 'phenomenal': 2, 'spectacular': 2, 'magnificent': 2,
       'awesome': 2, 'brilliant': 2, 'fabulous': 2, 'marvelous': 2, 'superb': 2,
-      'extraordinary': 2, 'outstanding': 2, 'exceptional': 2, 'glorious': 2, 'splendid': 2,
       'elated': 2, 'jubilant': 2, 'exhilarated': 2, 'radiant': 2, 'blissful': 2,
-      'joyful': 2, 'cheerful': 2, 'uplifted': 2, 'triumphant': 2, 'victorious': 2
+      'joyful': 2, 'triumphant': 2, 'victorious': 2, 'glorious': 2, 'heavenly': 2,
+      'perfect': 2, 'paradise': 2, 'divine': 2, 'magical': 2, 'extraordinary': 2
     },
-    // Positive (1)
     positive: {
       'good': 1, 'great': 1, 'nice': 1, 'happy': 1, 'fine': 1, 'okay': 1, 'pleasant': 1,
       'cheerful': 1, 'content': 1, 'satisfied': 1, 'glad': 1, 'better': 1, 'improved': 1,
       'decent': 1, 'alright': 1, 'enjoyable': 1, 'positive': 1, 'upbeat': 1, 'optimistic': 1,
       'hopeful': 1, 'confident': 1, 'peaceful': 1, 'calm': 1, 'relaxed': 1, 'comfortable': 1,
       'pleased': 1, 'thankful': 1, 'appreciate': 1, 'love': 1, 'like': 1, 'enjoy': 1,
-      'fun': 1, 'exciting': 1, 'interesting': 1, 'productive': 1, 'successful': 1
+      'fun': 1, 'exciting': 1, 'interesting': 1
     },
-    // Negative (-1)
     negative: {
       'bad': -1, 'sad': -1, 'unhappy': -1, 'disappointed': -1, 'upset': -1, 'down': -1,
       'frustrated': -1, 'annoyed': -1, 'worried': -1, 'anxious': -1, 'nervous': -1,
       'stressed': -1, 'difficult': -1, 'rough': -1, 'tough': -1, 'hard': -1, 'poor': -1,
       'uncomfortable': -1, 'uneasy': -1, 'concerned': -1, 'troubled': -1, 'bothered': -1,
       'irritated': -1, 'agitated': -1, 'restless': -1, 'tense': -1, 'overwhelmed': -1,
-      'discouraged': -1, 'unmotivated': -1, 'bored': -1, 'dull': -1, 'bland': -1,
-      'mediocre': -1, 'unsatisfied': -1, 'unhappy': -1, 'dissatisfied': -1
+      'discouraged': -1, 'unmotivated': -1, 'bored': -1, 'dull': -1, 'gloomy': -1,
+      'blue': -1, 'melancholy': -1, 'somber': -1, 'moody': -1
     },
-    // Very Negative (-2)
     veryNegative: {
+      // Extreme sadness & despair
       'terrible': -2, 'awful': -2, 'horrible': -2, 'miserable': -2, 'depressed': -2,
       'devastating': -2, 'hopeless': -2, 'worst': -2, 'dreadful': -2, 'unbearable': -2,
       'crushing': -2, 'heartbroken': -2, 'agonizing': -2, 'furious': -2, 'enraged': -2,
       'hateful': -2, 'despair': -2, 'desperate': -2, 'suicidal': -2, 'traumatic': -2,
       'nightmare': -2, 'catastrophic': -2, 'disastrous': -2, 'tragic': -2, 'anguish': -2,
-      'tormented': -2, 'suffering': -2, 'pain': -2, 'agony': -2, 'grief': -2
+      'tormented': -2, 'suffering': -2, 'pain': -2, 'agony': -2, 'grief': -2,
+      // Dark thoughts
+      'die': -2, 'death': -2, 'dead': -2, 'kill': -2, 'suicide': -2, 'end': -2,
+      'worthless': -2, 'useless': -2, 'hate': -2, 'broken': -2, 'empty': -2,
+      'numb': -2, 'void': -2, 'darkness': -2, 'hell': -2
     }
   },
   
@@ -63,30 +65,26 @@ const comprehensiveLexicon = {
       'party': 2, 'gathering': 2, 'reunion': 2, 'connected': 2, 'together': 2, 'supported': 2,
       'welcomed': 2, 'included': 2, 'appreciated': 2, 'cherished': 2, 'adored': 2,
       'embraced': 2, 'united': 2, 'community': 2, 'belonging': 2, 'accepted': 2,
-      'celebrate': 2, 'celebrating': 2, 'socialize': 2, 'socializing': 2, 'connect': 2,
-      'hangout': 2, 'wedding': 2, 'engagement': 2, 'birthday': 2
+      'wedding': 2, 'engagement': 2, 'birthday': 2, 'anniversary': 2
     },
     positive: {
       'friends': 1, 'friend': 1, 'met': 1, 'meeting': 1, 'talked': 1, 'chat': 1, 'coffee': 1,
       'lunch': 1, 'dinner': 1, 'social': 1, 'people': 1, 'colleague': 1, 'colleagues': 1,
       'team': 1, 'family': 1, 'conversation': 1, 'fun': 1, 'enjoyed': 1, 'laughed': 1,
       'partner': 1, 'spouse': 1, 'boyfriend': 1, 'girlfriend': 1, 'date': 1, 'dating': 1,
-      'roommate': 1, 'neighbor': 1, 'acquaintance': 1, 'visit': 1, 'visited': 1,
-      'company': 1, 'group': 1, 'club': 1, 'event': 1, 'outing': 1, 'together': 1
+      'roommate': 1, 'neighbor': 1, 'visit': 1, 'visited': 1, 'hangout': 1, 'group': 1
     },
     negative: {
       'alone': -1, 'lonely': -1, 'isolated': -1, 'argument': -1, 'disagreement': -1,
       'tension': -1, 'awkward': -1, 'uncomfortable': -1, 'distant': -1, 'fight': -1,
       'fighting': -1, 'conflict': -1, 'misunderstanding': -1, 'separate': -1, 'separated': -1,
-      'divorce': -1, 'breakup': -1, 'broke': -1, 'drama': -1, 'gossip': -1, 'rumor': -1,
-      'backstab': -1, 'fake': -1, 'superficial': -1, 'difficult': -1, 'struggle': -1
+      'divorce': -1, 'breakup': -1, 'broke': -1, 'drama': -1, 'gossip': -1
     },
     veryNegative: {
       'abandoned': -2, 'rejected': -2, 'excluded': -2, 'betrayed': -2, 'bullied': -2,
       'hostile': -2, 'toxic': -2, 'hated': -2, 'ignored': -2, 'ostracized': -2,
       'abuse': -2, 'abused': -2, 'harassed': -2, 'harassment': -2, 'threatened': -2,
-      'attacked': -2, 'assaulted': -2, 'violence': -2, 'hatred': -2, 'enemy': -2,
-      'shunned': -2, 'despised': -2, 'alienated': -2
+      'attacked': -2, 'violence': -2, 'hatred': -2, 'enemy': -2, 'shunned': -2
     }
   },
   
@@ -96,30 +94,26 @@ const comprehensiveLexicon = {
       'promotion': 2, 'promoted': 2, 'praised': 2, 'recognized': 2, 'award': 2,
       'excellent': 2, 'outstanding': 2, 'productive': 2, 'efficient': 2, 'completed': 2,
       'triumph': 2, 'victory': 2, 'won': 2, 'winning': 2, 'exceeded': 2, 'excelled': 2,
-      'mastered': 2, 'innovated': 2, 'innovation': 2, 'pioneered': 2, 'launched': 2,
-      'bonus': 2, 'raise': 2, 'hired': 2, 'accepted': 2, 'dream job': 2
+      'mastered': 2, 'innovated': 2, 'launched': 2, 'bonus': 2, 'raise': 2, 'hired': 2
     },
     positive: {
       'finished': 1, 'progress': 1, 'working': 1, 'work': 1, 'task': 1, 'project': 1,
-      'meeting': 1, 'presentation': 1, 'okay': 1, 'decent': 1, 'job': 1, 'office': 1,
-      'business': 1, 'professional': 1, 'organized': 1, 'productive': 1, 'focused': 1,
-      'career': 1, 'client': 1, 'customer': 1, 'boss': 1, 'manager': 1, 'employee': 1,
-      'assignment': 1, 'deliver': 1, 'delivered': 1, 'done': 1, 'started': 1
+      'meeting': 1, 'presentation': 1, 'job': 1, 'office': 1, 'business': 1, 
+      'professional': 1, 'organized': 1, 'focused': 1, 'career': 1, 'client': 1,
+      'done': 1, 'deliver': 1, 'delivered': 1
     },
     negative: {
       'stressed': -1, 'deadline': -1, 'pressure': -1, 'behind': -1, 'difficult': -1,
       'challenging': -1, 'problem': -1, 'issue': -1, 'struggle': -1, 'struggling': -1,
-      'overtime': -1, 'busy': -1, 'hectic': -1, 'confused': -1, 'unclear': -1,
-      'mistake': -1, 'error': -1, 'delay': -1, 'delayed': -1, 'setback': -1,
-      'rejection': -1, 'rejected': -1, 'criticism': -1, 'criticized': -1, 'complaint': -1,
-      'late': -1, 'rush': -1, 'rushed': -1, 'unprepared': -1
+      'overtime': -1, 'busy': -1, 'hectic': -1, 'confused': -1, 'mistake': -1,
+      'error': -1, 'delay': -1, 'delayed': -1, 'setback': -1, 'rejection': -1,
+      'rejected': -1, 'criticism': -1, 'criticized': -1, 'late': -1, 'rush': -1
     },
     veryNegative: {
-      'overwhelming': -2, 'overwhelmed': -2, 'burnout': -2, 'burnt': -2, 'failed': -2, 
-      'failure': -2, 'disaster': -2, 'impossible': -2, 'crisis': -2, 'nightmare': -2, 
-      'chaos': -2, 'terrible': -2, 'fired': -2, 'quit': -2, 'quitting': -2, 'layoff': -2,
-      'unemployed': -2, 'jobless': -2, 'bankruptcy': -2, 'lawsuit': -2, 'sued': -2,
-      'catastrophe': -2, 'collapse': -2, 'ruined': -2, 'destroyed': -2
+      'overwhelming': -2, 'overwhelmed': -2, 'burnout': -2, 'burnt': -2, 'failed': -2,
+      'failure': -2, 'disaster': -2, 'impossible': -2, 'crisis': -2, 'nightmare': -2,
+      'chaos': -2, 'fired': -2, 'quit': -2, 'quitting': -2, 'layoff': -2,
+      'unemployed': -2, 'jobless': -2, 'bankruptcy': -2, 'sued': -2, 'collapse': -2
     }
   },
   
@@ -128,115 +122,154 @@ const comprehensiveLexicon = {
       'energized': 2, 'energetic': 2, 'refreshed': 2, 'revitalized': 2, 'pumped': 2,
       'motivated': 2, 'charged': 2, 'invigorated': 2, 'strong': 2, 'powerful': 2,
       'vibrant': 2, 'lively': 2, 'dynamic': 2, 'enthusiastic': 2, 'excited': 2,
-      'hyper': 2, 'full': 2, 'rejuvenated': 2, 'restored': 2, 'renewed': 2,
+      'hyper': 2, 'rejuvenated': 2, 'restored': 2, 'renewed': 2, 'alive': 2,
       'workout': 2, 'exercise': 2, 'exercised': 2, 'gym': 2, 'run': 2, 'ran': 2
     },
     positive: {
-      'awake': 1, 'alert': 1, 'active': 1, 'okay': 1, 'fine': 1, 'decent': 1, 'rested': 1,
-      'ready': 1, 'good': 1, 'fresh': 1, 'focused': 1, 'clear': 1, 'sharp': 1,
-      'healthy': 1, 'fit': 1, 'well': 1, 'normal': 1, 'stable': 1, 'balanced': 1,
-      'walk': 1, 'walked': 1, 'moved': 1, 'stretch': 1, 'stretched': 1
+      'awake': 1, 'alert': 1, 'active': 1, 'rested': 1, 'ready': 1, 'good': 1,
+      'fresh': 1, 'focused': 1, 'clear': 1, 'sharp': 1, 'healthy': 1, 'fit': 1,
+      'well': 1, 'normal': 1, 'stable': 1, 'balanced': 1, 'walk': 1, 'walked': 1
     },
     negative: {
       'tired': -1, 'sleepy': -1, 'drained': -1, 'low': -1, 'sluggish': -1, 'weary': -1,
       'worn': -1, 'fatigued': -1, 'lazy': -1, 'slow': -1, 'weak': -1, 'lethargic': -1,
-      'drowsy': -1, 'groggy': -1, 'unmotivated': -1, 'listless': -1, 'apathetic': -1,
-      'sick': -1, 'ill': -1, 'unwell': -1, 'headache': -1, 'pain': -1, 'ache': -1,
-      'sore': -1, 'hurt': -1, 'nap': -1, 'rest': -1
+      'drowsy': -1, 'groggy': -1, 'unmotivated': -1, 'listless': -1, 'apathetic': -1
     },
     veryNegative: {
       'exhausted': -2, 'depleted': -2, 'burnt out': -2, 'burnout': -2, 'collapse': -2,
       'collapsed': -2, 'dead': -2, 'dying': -2, 'zombie': -2, 'lifeless': -2, 'empty': -2,
-      'bedridden': -2, 'hospitalized': -2, 'injured': -2, 'disabled': -2, 'paralyzed': -2,
-      'crippled': -2, 'chronic': -2, 'severe': -2, 'intense': -2, 'unbearable': -2
+      'drained': -2, 'wiped': -2, 'shattered': -2
+    }
+  },
+  
+  // NEW CATEGORY: Health
+  health: {
+    veryPositive: {
+      'healthy': 2, 'fit': 2, 'strong': 2, 'robust': 2, 'vigorous': 2, 'thriving': 2,
+      'recovered': 2, 'healed': 2, 'cured': 2, 'wellness': 2, 'vitality': 2,
+      'energetic': 2, 'athletic': 2, 'muscular': 2
+    },
+    positive: {
+      'well': 1, 'fine': 1, 'okay': 1, 'good': 1, 'better': 1, 'improving': 1,
+      'recovering': 1, 'healing': 1, 'stable': 1, 'normal': 1, 'decent': 1
+    },
+    negative: {
+      'sick': -1, 'ill': -1, 'unwell': -1, 'cold': -1, 'flu': -1, 'fever': -1,
+      'headache': -1, 'pain': -1, 'ache': -1, 'sore': -1, 'hurt': -1, 'injury': -1,
+      'injured': -1, 'weak': -1, 'nauseous': -1, 'dizzy': -1, 'cough': -1,
+      'allergies': -1, 'infection': -1
+    },
+    veryNegative: {
+      'hospital': -2, 'hospitalized': -2, 'emergency': -2, 'surgery': -2, 'diagnosed': -2,
+      'disease': -2, 'cancer': -2, 'chronic': -2, 'severe': -2, 'critical': -2,
+      'disabled': -2, 'paralyzed': -2, 'terminal': -2, 'dying': -2, 'bedridden': -2
+    }
+  },
+  
+  // NEW CATEGORY: Sleep
+  sleep: {
+    veryPositive: {
+      'well-rested': 2, 'refreshed': 2, 'rejuvenated': 2, 'great sleep': 2,
+      'slept well': 2, 'perfect sleep': 2, 'amazing sleep': 2, 'deep sleep': 2
+    },
+    positive: {
+      'rested': 1, 'slept': 1, 'sleep': 1, 'nap': 1, 'napped': 1, 'rest': 1,
+      'okay sleep': 1, 'decent sleep': 1, 'enough sleep': 1
+    },
+    negative: {
+      'tired': -1, 'sleepy': -1, 'drowsy': -1, 'groggy': -1, 'yawn': -1,
+      'need sleep': -1, 'little sleep': -1, 'not enough sleep': -1,
+      'bad sleep': -1, 'poor sleep': -1, 'restless': -1
+    },
+    veryNegative: {
+      'insomnia': -2, 'sleepless': -2, 'no sleep': -2, 'cant sleep': -2,
+      'exhausted': -2, 'sleep deprived': -2, 'nightmare': -2, 'nightmares': -2,
+      'up all night': -2, 'didnt sleep': -2
+    }
+  },
+  
+  // NEW CATEGORY: Stress
+  stress: {
+    veryPositive: {
+      'relaxed': 2, 'calm': 2, 'peaceful': 2, 'tranquil': 2, 'serene': 2,
+      'carefree': 2, 'zen': 2, 'stress-free': 2, 'unburdened': 2, 'at ease': 2
+    },
+    positive: {
+      'okay': 1, 'fine': 1, 'manageable': 1, 'stable': 1, 'balanced': 1,
+      'comfortable': 1, 'coping': 1, 'handling': 1
+    },
+    negative: {
+      'stressed': -1, 'stress': -1, 'anxious': -1, 'anxiety': -1, 'worried': -1,
+      'worry': -1, 'nervous': -1, 'tense': -1, 'pressure': -1, 'pressured': -1,
+      'overwhelmed': -1, 'frazzled': -1, 'frantic': -1, 'rushed': -1
+    },
+    veryNegative: {
+      'panic': -2, 'panicking': -2, 'panic attack': -2, 'breakdown': -2,
+      'breaking down': -2, 'cant cope': -2, 'unbearable': -2, 'crushing': -2,
+      'suffocating': -2, 'drowning': -2, 'crisis': -2
     }
   }
 };
 
 // ============================================
-// TIME EXPRESSIONS & PATTERNS
+// CRITICAL PHRASES - High Priority Detection
 // ============================================
 
-const timePatterns = {
-  morning: ['morning', 'am', 'breakfast', 'woke', 'wake', 'dawn', 'sunrise', 'early'],
-  afternoon: ['afternoon', 'lunch', 'noon', 'midday', 'pm'],
-  evening: ['evening', 'dinner', 'night', 'sunset', 'dusk'],
-  night: ['night', 'midnight', 'late', 'sleep', 'bed', 'bedtime'],
+const criticalPhrases = {
+  // Suicidal/harmful thoughts
+  'want to die': { mood: -2, health: -2, stress: -2 },
+  'wanna die': { mood: -2, health: -2, stress: -2 },
+  'wish i was dead': { mood: -2, health: -2, stress: -2 },
+  'kill myself': { mood: -2, health: -2, stress: -2 },
+  'end it all': { mood: -2, health: -2, stress: -2 },
+  'no point': { mood: -2, stress: -2 },
+  'give up': { mood: -2, stress: -1 },
+  'cant go on': { mood: -2, stress: -2 },
+  'no hope': { mood: -2, stress: -2 },
   
-  // Days
-  today: ['today', 'currently', 'now', 'right now', 'at the moment'],
-  yesterday: ['yesterday', 'last night', 'earlier'],
-  tomorrow: ['tomorrow', 'later', 'soon', 'upcoming'],
+  // Mental health crises
+  'panic attack': { stress: -2, health: -2 },
+  'mental breakdown': { mood: -2, stress: -2, health: -2 },
+  'nervous breakdown': { mood: -2, stress: -2, health: -2 },
+  'cant cope': { stress: -2, mood: -1 },
+  'losing my mind': { mood: -2, stress: -2 },
   
-  // Week
-  weekend: ['weekend', 'saturday', 'sunday'],
-  weekday: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'weekday'],
+  // Work burnout
+  'burnt out': { work: -2, energy: -2, stress: -2 },
+  'burned out': { work: -2, energy: -2, stress: -2 },
+  'burn out': { work: -2, energy: -2, stress: -2 },
   
-  // Duration
-  all_day: ['all day', 'whole day', 'entire day', 'day long'],
-  quick: ['quick', 'brief', 'short', 'moment'],
-  long: ['long', 'hours', 'forever', 'endless']
-};
-
-// ============================================
-// MULTI-WORD PHRASES (Priority Detection)
-// ============================================
-
-const contextualPhrases = {
-  // Mood phrases
+  // Positive phrases
   'feeling great': { mood: 2 },
-  'feeling good': { mood: 1 },
-  'feeling bad': { mood: -1 },
-  'feeling terrible': { mood: -2 },
-  'feeling awful': { mood: -2 },
   'feeling amazing': { mood: 2 },
   'on top of the world': { mood: 2, energy: 2 },
-  'down in the dumps': { mood: -2 },
-  'over the moon': { mood: 2 },
-  'on cloud nine': { mood: 2 },
+  'best day ever': { mood: 2 },
+  'couldn\'t be better': { mood: 2 },
+  'life is good': { mood: 2 },
   
-  // Work phrases
-  'burnt out': { work: -2, energy: -2 },
-  'burned out': { work: -2, energy: -2 },
-  'burn out': { work: -2, energy: -2 },
-  'worked out': { energy: 1 },
+  // Social
+  'hanging out': { social: 1 },
+  'quality time': { social: 2 },
+  'had fun': { mood: 1, social: 1 },
+  'great time': { mood: 2, social: 1 },
+  'home alone': { social: -1 },
+  'all alone': { social: -2, mood: -1 },
+  
+  // Work
   'crushing it': { work: 2 },
   'nailed it': { work: 2 },
   'killed it': { work: 2 },
-  'smashed it': { work: 2 },
-  'knocked out': { work: 1, energy: -1 },
   
-  // Social phrases
-  'hanging out': { social: 1 },
-  'hung out': { social: 1 },
-  'went out': { social: 1 },
-  'had fun': { mood: 1, social: 1 },
-  'good time': { mood: 1, social: 1 },
-  'great time': { mood: 2, social: 1 },
-  'quality time': { social: 2 },
-  'alone time': { social: 0 }, // neutral
-  'me time': { social: 0 },
-  'home alone': { social: -1 },
-  'by myself': { social: -1 },
-  
-  // Combinations
-  'went well': { mood: 1 },
-  'going well': { mood: 1 },
-  'not good': { mood: -1 },
-  'not bad': { mood: 1 },
-  'pretty good': { mood: 1 },
-  'really good': { mood: 2 },
-  'very good': { mood: 2 },
-  'super tired': { energy: -2 },
-  'extremely tired': { energy: -2 },
-  'so tired': { energy: -2 },
-  'dead tired': { energy: -2 },
-  'wide awake': { energy: 2 },
-  'full of energy': { energy: 2 }
+  // Sleep
+  'slept well': { sleep: 2, energy: 1 },
+  'great sleep': { sleep: 2, energy: 1 },
+  'no sleep': { sleep: -2, energy: -2 },
+  'cant sleep': { sleep: -2, stress: -1 },
+  'up all night': { sleep: -2, energy: -1 }
 };
 
 // ============================================
-// NEGATION & INTENSIFIERS
+// NEGATIONS & INTENSIFIERS
 // ============================================
 
 const negations = [
@@ -247,50 +280,12 @@ const negations = [
 ];
 
 const intensifiers = {
-  // Strong intensifiers (1.5x - 2x)
   'very': 1.5, 'really': 1.5, 'extremely': 1.8, 'super': 1.6, 'incredibly': 1.7,
   'absolutely': 1.6, 'totally': 1.5, 'completely': 1.6, 'utterly': 1.7, 'truly': 1.5,
   'so': 1.6, 'such': 1.5, 'highly': 1.5, 'deeply': 1.6, 'profoundly': 1.7,
-  'ridiculously': 1.8, 'insanely': 1.8, 'crazy': 1.7, 'mad': 1.7, 'wild': 1.7,
-  
-  // Moderate intensifiers (1.2x - 1.4x)
-  'quite': 1.2, 'pretty': 1.2, 'rather': 1.2, 'fairly': 1.2, 'reasonably': 1.2,
-  'considerably': 1.3, 'significantly': 1.3, 'notably': 1.3,
-  
-  // Weak intensifiers (0.7x - 0.9x)
-  'somewhat': 0.8, 'slightly': 0.7, 'little': 0.7, 'bit': 0.7, 'kinda': 0.8,
-  'kind of': 0.8, 'sort of': 0.8, 'a bit': 0.7, 'a little': 0.7, 'mildly': 0.8
-};
-
-// ============================================
-// CONTEXTUAL INFERENCE RULES
-// ============================================
-
-const inferenceRules = {
-  // If work is very negative, energy likely suffers
-  workToEnergy: (workScore) => {
-    if (workScore <= -1) return Math.max(workScore, -2);
-    return 0;
-  },
-  
-  // If social is very positive, mood improves
-  socialToMood: (socialScore) => {
-    if (socialScore >= 1) return Math.min(Math.floor(socialScore / 2) + 1, 2);
-    if (socialScore <= -1) return Math.max(Math.ceil(socialScore / 2), -1);
-    return 0;
-  },
-  
-  // If mood is very negative, social might be affected
-  moodToSocial: (moodScore) => {
-    if (moodScore <= -1) return Math.max(Math.floor(moodScore / 2), -1);
-    return 0;
-  },
-  
-  // If energy is very low, mood suffers
-  energyToMood: (energyScore) => {
-    if (energyScore <= -1) return Math.max(Math.floor(energyScore / 2), -1);
-    return 0;
-  }
+  'ridiculously': 1.8, 'insanely': 1.8, 'crazy': 1.7, 'mad': 1.7,
+  'quite': 1.2, 'pretty': 1.2, 'rather': 1.2, 'fairly': 1.2,
+  'somewhat': 0.8, 'slightly': 0.7, 'little': 0.7, 'bit': 0.7, 'kinda': 0.8
 };
 
 // ============================================
@@ -299,30 +294,30 @@ const inferenceRules = {
 
 function analyzeText(text) {
   if (!text || text.trim().length < 5) {
-    return { mood: 0, social: 0, work: 0, energy: 0, time: null };
+    return { mood: 0, social: 0, work: 0, energy: 0, health: 0, sleep: 0, stress: 0, time: null };
   }
   
   const lowerText = text.toLowerCase();
   const words = lowerText.split(/\s+/);
   
-  // Initialize scores
+  // Initialize scores for all dimensions
   const scores = {
-    mood: { total: 0, count: 0, mentions: [] },
-    social: { total: 0, count: 0, mentions: [] },
-    work: { total: 0, count: 0, mentions: [] },
-    energy: { total: 0, count: 0, mentions: [] }
+    mood: { total: 0, count: 0 },
+    social: { total: 0, count: 0 },
+    work: { total: 0, count: 0 },
+    energy: { total: 0, count: 0 },
+    health: { total: 0, count: 0 },
+    sleep: { total: 0, count: 0 },
+    stress: { total: 0, count: 0 }
   };
   
-  const timeContext = extractTimeContext(lowerText);
-  
-  // STEP 1: Detect multi-word phrases first (highest priority)
-  for (const phrase in contextualPhrases) {
+  // STEP 1: Check critical phrases FIRST (highest priority)
+  for (const phrase in criticalPhrases) {
     if (lowerText.includes(phrase)) {
-      const phraseScores = contextualPhrases[phrase];
+      const phraseScores = criticalPhrases[phrase];
       for (const dimension in phraseScores) {
-        scores[dimension].total += phraseScores[dimension];
+        scores[dimension].total += phraseScores[dimension] * 2; // Double weight for critical phrases
         scores[dimension].count++;
-        scores[dimension].mentions.push({ word: phrase, score: phraseScores[dimension], source: 'phrase' });
       }
     }
   }
@@ -331,7 +326,6 @@ function analyzeText(text) {
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
     const prevWord = i > 0 ? words[i - 1] : null;
-    const nextWord = i < words.length - 1 ? words[i + 1] : null;
     
     // Check for negation
     const isNegated = prevWord && negations.includes(prevWord);
@@ -343,17 +337,15 @@ function analyzeText(text) {
     }
     
     // Check each dimension
-    for (const dimension in comprehensiveLexicon) {
-      for (const sentiment in comprehensiveLexicon[dimension]) {
-        const lexiconWords = comprehensiveLexicon[dimension][sentiment];
+    for (const dimension in lexicon) {
+      for (const sentiment in lexicon[dimension]) {
+        const lexiconWords = lexicon[dimension][sentiment];
         
         if (lexiconWords[word] !== undefined) {
           let score = lexiconWords[word];
           
           // Apply negation
-          if (isNegated) {
-            score = -score;
-          }
+          if (isNegated) score = -score;
           
           // Apply intensity
           score = score * intensity;
@@ -363,13 +355,6 @@ function analyzeText(text) {
           
           scores[dimension].total += score;
           scores[dimension].count++;
-          scores[dimension].mentions.push({
-            word,
-            score,
-            isNegated,
-            intensity,
-            source: 'lexicon'
-          });
         }
       }
     }
@@ -379,32 +364,21 @@ function analyzeText(text) {
   const finalScores = {};
   for (const dimension in scores) {
     if (scores[dimension].count > 0) {
-      // Calculate weighted average
       let avg = scores[dimension].total / scores[dimension].count;
-      
-      // Round to nearest integer
       finalScores[dimension] = Math.max(-2, Math.min(2, Math.round(avg)));
     } else {
       finalScores[dimension] = 0;
     }
   }
   
-  // STEP 4: Apply contextual inference rules
+  // STEP 4: Apply contextual inference
   applyInferenceRules(finalScores, scores);
   
-  // STEP 5: Add time context
-  finalScores.time = timeContext;
+  // STEP 5: Extract time context
+  finalScores.time = extractTimeContext(lowerText);
   
-  // Logging for debugging
   console.log('🧠 Advanced NLP Analysis:');
-  console.log('  Input:', text.substring(0, 100) + (text.length > 100 ? '...' : ''));
-  console.log('  Time Context:', timeContext);
-  console.log('  Mentions:', {
-    mood: scores.mood.count,
-    social: scores.social.count,
-    work: scores.work.count,
-    energy: scores.energy.count
-  });
+  console.log('  Input:', text.substring(0, 100));
   console.log('  Final Scores:', finalScores);
   
   return finalScores;
@@ -415,39 +389,36 @@ function analyzeText(text) {
 // ============================================
 
 function extractTimeContext(text) {
-  const context = {
-    timeOfDay: null,
-    day: null,
-    duration: null
-  };
+  const context = { timeOfDay: null, day: null, duration: null };
   
-  // Check time of day
-  for (const time in timePatterns) {
-    if (['morning', 'afternoon', 'evening', 'night'].includes(time)) {
-      if (timePatterns[time].some(pattern => text.includes(pattern))) {
-        context.timeOfDay = time;
-        break;
-      }
-    }
+  // Time of day
+  if (text.includes('morning') || text.includes('breakfast') || text.includes('am')) {
+    context.timeOfDay = 'morning';
+  } else if (text.includes('afternoon') || text.includes('lunch') || text.includes('noon')) {
+    context.timeOfDay = 'afternoon';
+  } else if (text.includes('evening') || text.includes('dinner') || text.includes('sunset')) {
+    context.timeOfDay = 'evening';
+  } else if (text.includes('night') || text.includes('midnight') || text.includes('pm')) {
+    context.timeOfDay = 'night';
   }
   
-  // Check day reference
-  if (timePatterns.today.some(pattern => text.includes(pattern))) {
+  // Day reference
+  if (text.includes('today') || text.includes('now')) {
     context.day = 'today';
-  } else if (timePatterns.yesterday.some(pattern => text.includes(pattern))) {
+  } else if (text.includes('yesterday')) {
     context.day = 'yesterday';
-  } else if (timePatterns.tomorrow.some(pattern => text.includes(pattern))) {
+  } else if (text.includes('tomorrow')) {
     context.day = 'tomorrow';
-  } else if (timePatterns.weekend.some(pattern => text.includes(pattern))) {
+  } else if (text.includes('weekend') || text.includes('saturday') || text.includes('sunday')) {
     context.day = 'weekend';
   }
   
-  // Check duration
-  if (timePatterns.all_day.some(pattern => text.includes(pattern))) {
+  // Duration
+  if (text.includes('all day') || text.includes('whole day')) {
     context.duration = 'all_day';
-  } else if (timePatterns.quick.some(pattern => text.includes(pattern))) {
+  } else if (text.includes('quick') || text.includes('brief') || text.includes('moment')) {
     context.duration = 'brief';
-  } else if (timePatterns.long.some(pattern => text.includes(pattern))) {
+  } else if (text.includes('long') || text.includes('hours') || text.includes('forever')) {
     context.duration = 'extended';
   }
   
@@ -455,37 +426,36 @@ function extractTimeContext(text) {
 }
 
 function applyInferenceRules(finalScores, scores) {
-  // Only apply inference if dimension wasn't explicitly mentioned
-  
-  // Work → Energy
-  if (scores.energy.count === 0 && scores.work.count > 0) {
-    const inferredEnergy = inferenceRules.workToEnergy(finalScores.work);
-    if (inferredEnergy !== 0) {
-      finalScores.energy = inferredEnergy;
-    }
+  // Work stress → affects stress & energy
+  if (scores.work.count > 0 && finalScores.work <= -1) {
+    if (scores.stress.count === 0) finalScores.stress = Math.max(-2, finalScores.work);
+    if (scores.energy.count === 0) finalScores.energy = Math.max(-1, Math.ceil(finalScores.work / 2));
   }
   
-  // Social → Mood
-  if (scores.mood.count === 0 && scores.social.count > 0) {
-    const inferredMood = inferenceRules.socialToMood(finalScores.social);
-    if (inferredMood !== 0) {
-      finalScores.mood = inferredMood;
-    }
+  // Bad sleep → affects energy & mood
+  if (scores.sleep.count > 0 && finalScores.sleep <= -1) {
+    if (scores.energy.count === 0) finalScores.energy = Math.max(-2, finalScores.sleep);
+    if (scores.mood.count === 0) finalScores.mood = Math.max(-1, Math.ceil(finalScores.sleep / 2));
   }
   
-  // Mood → Social (weaker inference)
-  if (scores.social.count === 0 && scores.mood.count > 0) {
-    const inferredSocial = inferenceRules.moodToSocial(finalScores.mood);
-    if (inferredSocial !== 0) {
-      finalScores.social = inferredSocial;
-    }
+  // High stress → affects health & mood
+  if (scores.stress.count > 0 && finalScores.stress <= -1) {
+    if (scores.health.count === 0) finalScores.health = Math.max(-1, Math.ceil(finalScores.stress / 2));
+    if (scores.mood.count === 0) finalScores.mood = Math.max(-2, finalScores.stress);
   }
   
-  // Energy → Mood
-  if (scores.mood.count === 0 && scores.energy.count > 0) {
-    const inferredMood = inferenceRules.energyToMood(finalScores.energy);
-    if (inferredMood !== 0) {
-      finalScores.mood = inferredMood;
+  // Bad health → affects energy & mood
+  if (scores.health.count > 0 && finalScores.health <= -1) {
+    if (scores.energy.count === 0) finalScores.energy = Math.max(-2, finalScores.health);
+    if (scores.mood.count === 0) finalScores.mood = Math.max(-1, Math.ceil(finalScores.health / 2));
+  }
+  
+  // Social → affects mood
+  if (scores.social.count > 0) {
+    if (finalScores.social >= 1 && scores.mood.count === 0) {
+      finalScores.mood = 1;
+    } else if (finalScores.social <= -1 && scores.mood.count === 0) {
+      finalScores.mood = Math.max(-1, Math.ceil(finalScores.social / 2));
     }
   }
 }
